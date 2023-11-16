@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Xonancess1/Search_Engine/assets/148671252/a0a1b0e2-0c3a-4c7f-a7d8-9dfd6ff02641" width = "400"/>
+  <img src="https://github.com/Xonancess1/Search_Engine/assets/148671252/00d8be0a-bc4e-4c2b-b435-60c789d4f1dd" width = "400"/>
 </p>
 
 # Описание
@@ -117,27 +117,27 @@ result - результат поиска запроса. true - значит п�
 # Инструкция
 
 1. Запускаем программу. <br>
-<img src = "https://github.com/Xonancess1/Search_Engine/assets/148671252/0ddae470-2ebf-4759-aa61-4e2ffec2641d" width = "600">
+<img src = "https://github.com/Xonancess1/Search_Engine/assets/148671252/075d819a-631b-4626-9863-7c769291f9b9" width = "600">
 
 2. Нажмите "..." напротив каждого поля, чтобы выбрать соответствующий файл(config.json или requests.json). <br>
 
-![openConfigAndRequests](https://github.com/Xonancess1/Search_Engine/assets/148671252/0ddc8484-ed1e-41c8-b29f-6c8a889b7607)
+![openConfigAndRequests](https://github.com/Xonancess1/Search_Engine/assets/148671252/6dcfb88c-7d8d-4ed5-a86e-bfb626a864b9)
 
 3. Добавьте файлы кнопкой "+" для каждого поля. <br>
    ПРИМЕЧАНИЕ: <br>
   * Если выбрали не тот файл, то конопкой "-" очистите поле с ненужным файлом <br>
   * Если в вашем config.json уже есть файлы .txt, то они будут выведены в данное поле <br>
 
-![addConfigAndRequests](https://github.com/Xonancess1/Search_Engine/assets/148671252/ffac8b59-8f21-4fbb-80fc-9918591b78a9)
+![addConfigAndRequests](https://github.com/Xonancess1/Search_Engine/assets/148671252/a4c0bf63-13b0-4b1e-a8a5-cbbf13e18843)
 
 4. Нажмите "...", чтобы выбрать файл/файлы .txt <br>
 
-![openTxt](https://github.com/Xonancess1/Search_Engine/assets/148671252/c88ea8b3-54d5-4ef9-be4f-7ae374162f54)
+![openTxt](https://github.com/Xonancess1/Search_Engine/assets/148671252/607e13c9-2979-47fe-9b30-52dd2a60123c)
 
 5. Нажмите "+", чтобы добавить файл/файлы для дальнейшей работы с ним/ними.
 
-![addTxt](https://github.com/Xonancess1/Search_Engine/assets/148671252/768e95b9-2ec5-4010-a859-0e1d6c616c95)
+![addTxt](https://github.com/Xonancess1/Search_Engine/assets/148671252/97ff2285-de50-488c-aaff-8cffa8d45358)
 
 6. Нажмите кнопку "Старт" и смотрите результат. <br>
 
-![start](https://github.com/Xonancess1/Search_Engine/assets/148671252/f8a6a341-762b-44d7-9269-f3838ab3e828)
+![start](https://github.com/Xonancess1/Search_Engine/assets/148671252/42c01c89-dd06-4bf9-8b6c-972926285626)
