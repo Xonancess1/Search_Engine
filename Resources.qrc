@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/Images">
+        <file>Images/close.png</file>
+        <file>Images/openConfigAndRequestsJSON.jpg</file>
+        <file>Images/addConfigAndRequestsJSON.jpg</file>
+        <file>Images/WindowIcon.ico</file>
+        <file>Images/pathConfigAndRequestsJSON.jpg</file>
+        <file>Images/addLabelConfigAndRequestsJSON.jpg</file>
+        <file>Images/txtConfigJSON.jpg</file>
+        <file>Images/pathTxt.jpg</file>
+        <file>Images/showTxtConfigJSON.jpg</file>
+        <file>Images/addLabelTxt.jpg</file>
+        <file>Images/startAndResult.jpg</file>
+        <file>Images/showStartAndResult.jpg</file>
+        <file>Images/addTxt.jpg</file>
+        <file>Images/openTxt.jpg</file>
+    </qresource>
+</RCC>

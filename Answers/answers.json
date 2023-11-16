@@ -1,0 +1,1 @@
+{"answers":{"request0":{"docid":0,"rank":1.0,"result":true},"request1":{"docid":0,"rank":1.0,"result":true},"request2":{"relevance":[{"docid":1,"rank":1.0},{"docid":0,"rank":0.5},{"docid":2,"rank":0.5},{"docid":3,"rank":0.5}],"result":true}}}
