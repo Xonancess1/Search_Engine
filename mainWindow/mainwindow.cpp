@@ -78,16 +78,7 @@ void MainWindow::openFolder(QWidget *m_pathLabel, QString &fileExtension)
             QDir::currentPath(),
             "*." + fileExtension));
 
-        QFile file = path;
-        QFileInfo fileInfo(file.fileName());
-
-        if(fileInfo.fileName() == "config.json") {
-            qobject_cast<QLabel *>(m_pathLabel)->setText(path);
-            showListTxtFiles();
-        }
-        else if(fileInfo.fileName() == "requests.json") {
-            qobject_cast<QLabel *>(m_pathLabel)->setText(path);
-        }
+        qobject_cast<QLabel *>(m_pathLabel)->setText(path);
     }
     else if (qobject_cast<QTextEdit *>(m_pathLabel) && (qobject_cast<QTextEdit *>(m_pathLabel) != nullptr))
     {
@@ -113,7 +104,7 @@ void MainWindow::openFolder(QWidget *m_pathLabel, QString &fileExtension)
 // функция для вывода записанных файлов txt из config.json {
 void MainWindow::showListTxtFiles()
 {
-    if(!(ui->pathConfigLabel->text().isEmpty()))
+    if(!(ui->configToWorkLabel->text().isEmpty()))
     {
         QString configPath = ui->pathConfigLabel->text();
         std::string configPathStd = configPath.toStdString();
@@ -139,16 +130,35 @@ void MainWindow::on_openTxtButton_clicked()
 }
 // }
 
+// Добавляем файлы для дальнейшего поиска слов в них "+" {
+void MainWindow::on_addTxtButton_clicked()
+{
+    if(!(ui->pathTxtTextEdit->toPlainText().isEmpty()))
+    {
+        ui->TxtToWorkLabel->setText(".txt added");
+        ui->openTxtButton->setEnabled(false);
+    }
+}
+// }
+
+// По необходимости очищаем label "-" {
+void MainWindow::on_clearTxtButton_clicked()
+{
+    ui->TxtToWorkLabel->clear();
+    ui->openTxtButton->setEnabled(true);
+}
+// }
 
 // функция для добавления файлов txt в config.json {
 void MainWindow::addTxtToConfig(QWidget *m_label){
-    if(!(qobject_cast<QTextEdit *>(m_label)->toPlainText().isEmpty())
-        && (qobject_cast<QTextEdit *>(m_label) != nullptr)
+    if(!(qobject_cast<QLabel *>(m_label)->text().isEmpty())
+        && (qobject_cast<QLabel *>(m_label)->text() == ".txt added")
+        && (qobject_cast<QLabel *>(m_label) != nullptr)
         ) {
             QString configPath = ui->pathConfigLabel->text();
             std::string configPathStd = configPath.toStdString();
 
-            QString pathTxt = (qobject_cast<QTextEdit *>(m_label)->toPlainText());
+            QString pathTxt = ui->pathTxtTextEdit->toPlainText();
 
             vector<string> vec;
 
@@ -199,6 +209,29 @@ void MainWindow::on_openConfigButton_clicked() {
     openFolder(ui->pathConfigLabel, file);
 }
 // }
+
+// Добавляем файл для дальнейшей работы с ним "+" {
+void MainWindow::on_addConfigButton_clicked() {
+    QString path = ui->pathConfigLabel->text();
+    QFile file = path;
+    QFileInfo fileInfo(file.fileName());
+
+    if(fileInfo.fileName() == "config.json" && ui->configToWorkLabel->text().isEmpty()) {
+        ui->configToWorkLabel->setText("config.json added");
+        showListTxtFiles();
+        ui->openConfigButton->setEnabled(false);
+    }
+}
+// }
+
+// По необходимости очищаем "-" {
+void MainWindow::on_clearConfigButton_clicked()
+{
+    ui->configToWorkLabel->clear();
+    ui->pathTxtTextEdit->clear();
+    ui->openConfigButton->setEnabled(true);
+}
+// }
 // *CONFIG* --------------------------------------------------------------------------------- }
 
 
@@ -208,6 +241,28 @@ void MainWindow::on_openRequestsButton_clicked()
 {
     QString file("json");
     openFolder(ui->pathRequestsLabel, file);
+}
+// }
+
+// добавляем файл для дальнейшей работы с ним "+" {
+void MainWindow::on_addRequestsButton_clicked()
+{
+    QString path = ui->pathRequestsLabel->text();
+    QFile file = path;
+    QFileInfo fileInfo(file.fileName());
+
+    if(fileInfo.fileName() == "requests.json" && ui->requestsToWorkLabel->text().isEmpty()) {
+        ui->requestsToWorkLabel->setText("requests.json added");
+        ui->openRequestsButton->setEnabled(false);
+    }
+}
+// }
+
+// По необходимости очищаем  "-" {
+void MainWindow::on_clearRequestsButton_clicked()
+{
+    ui->requestsToWorkLabel->clear();
+    ui->openRequestsButton->setEnabled(true);
 }
 // }
 // *REQUESTS* --------------------------------------------------------------------------------- }
@@ -247,34 +302,7 @@ void MainWindow::showAnswer()
     QJsonDocument doc = QJsonDocument::fromJson(qstr.toUtf8());
     QString formattedJsonString = doc.toJson(QJsonDocument::Indented);
 
-    ui->answerTextEdit->setPlainText(formattedJsonString);
-}
-// }
-
-// Сохранить answers.json {
-void MainWindow::on_saveButton_clicked()
-{
-    QFileDialog fDialog(this);
-
-    fDialog.setAcceptMode(QFileDialog::AcceptSave);
-    QString filename = fDialog.getSaveFileName(this,
-                                QString("Сохранить answers.json"),
-                                QCoreApplication::applicationDirPath(),
-                                QString("*.json"));
-
-    if (filename.isEmpty())
-        return;
-
-    QFile file(filename);
-
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-        return;
-
-    QTextStream out(&file);
-
-    out << ui->answerTextEdit->toPlainText() << "\n";
-
-    file.close();
+    ui->answerTextEdit->insertPlainText(formattedJsonString);
 }
 // }
 // *ANSWER* ----------------------------------------------------------------------------------- }
@@ -284,12 +312,12 @@ void MainWindow::on_saveButton_clicked()
 // Кнопка "старт". Запуск программы ------------------------------------------------- {
 void MainWindow::on_startButton_clicked()
 {
-    if (ui->pathConfigLabel->text().isEmpty() || ui->pathRequestsLabel->text().isEmpty())
+    if (ui->configToWorkLabel->text().isEmpty() || ui->requestsToWorkLabel->text().isEmpty())
     {
-        if (ui->pathConfigLabel->text().isEmpty()) {
+        if (ui->configToWorkLabel->text().isEmpty()) {
             cerr << "\t - file not found error: config.json" << endl;
         }
-        if (ui->pathRequestsLabel->text().isEmpty()) {
+        if (ui->requestsToWorkLabel->text().isEmpty()) {
             cerr << "\t - file not found error: requests.json" << endl;
         }
         cout << endl;
@@ -303,7 +331,7 @@ void MainWindow::on_startButton_clicked()
         QString requestsPath = ui->pathRequestsLabel->text();
         std::string requestsPathStd = requestsPath.toStdString();
 
-        addTxtToConfig(ui->pathTxtTextEdit);
+        addTxtToConfig(ui->TxtToWorkLabel);
 
         try {
         ConverterJSON::getInstance()->readConfigFile(configPathStd);
