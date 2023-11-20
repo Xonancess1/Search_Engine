@@ -34,29 +34,17 @@ private slots:
 
     void on_openTxtButton_clicked();
 
-    void on_addTxtButton_clicked();
-
-    void on_clearTxtButton_clicked();
-
     void addTxtToConfig(QWidget *m_label);
     // txt --------------------------------------------------------------------- }
 
 
     // Config.json ------------------------------------ {
     void on_openConfigButton_clicked();
-
-    void on_addConfigButton_clicked();
-
-    void on_clearConfigButton_clicked();
     // Config.json ------------------------------------ {
 
 
     // Requsets.json ---------------------------------- {
     void on_openRequestsButton_clicked();
-
-    void on_addRequestsButton_clicked();
-
-    void on_clearRequestsButton_clicked();
     // Requsets.json ---------------------------------- }
 
 
@@ -69,12 +57,15 @@ private slots:
 
     // answers ----------------------------------- {
     void showAnswer();
+
+    void on_saveButton_clicked();
     // answers ----------------------------------- {
 
 
     // start ----------------------------------------- {
     void on_startButton_clicked();
     // start ----------------------------------------- }
+
 
 private:
     Ui::MainWindow *ui;
