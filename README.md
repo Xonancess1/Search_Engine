@@ -26,6 +26,7 @@ C++ - 17 <br>
 CMAKE - 3.23 <br>
 JSON(nlohmann_json) - 3.11.2 <br>
 GoogleTest - 1.10.0 <br>
+QT - 6.2.4<br>
 
 # Описание JSON-файлов
 
