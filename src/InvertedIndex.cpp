@@ -18,13 +18,18 @@ void InvertedIndex::updateDocumentBase(const std::vector<std::string>& input_doc
 
     frequencyDictionary.clear();
     size_t docId = 0;
-    for (const auto& content : input_docs)
-    {
-        // Start indexing thread.
-        std::thread index([this, &content, docId](){indexTheFile(content, docId);});
+
+    std::vector<std::thread> index;
+    for (const auto& content : input_docs) {
+        index.emplace_back(([this, &content, docId](){indexTheFile(content, docId);}));
         ++docId;
-        index.join();
     }
+    for (auto & i : index) {
+        if (i.joinable()) {
+            i.join();
+        }
+    }
+
     indexingIsOngoing = false;
 }
 
